@@ -10,6 +10,10 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -36,7 +40,37 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account',
+    
+    # theme
+    "bootstrapform",
+    "pinax_theme_bootstrap",
+
+    # Project
+    "cloudui",
 )
+
+TEMPLATE_LOADERS = [
+    "django.template.loaders.filesystem.Loader",
+    "django.template.loaders.app_directories.Loader",
+]
+
+TEMPLATE_CONTEXT_PROCESSORS = [
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.core.context_processors.request",
+    "django.contrib.messages.context_processors.messages",
+    "account.context_processors.account",
+    "pinax_theme_bootstrap.context_processors.theme",
+]
+
+TEMPLATE_DIRS = [
+    os.path.join(PACKAGE_ROOT, "templates"),
+]
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -84,3 +118,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(PACKAGE_ROOT, "static")

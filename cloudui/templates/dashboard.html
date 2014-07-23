@@ -1,0 +1,16 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}pinax-project-teams{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <div class="dashboard-panel">
+            <div class="dashboard-panel-header">
+                <i class="icon-group"></i>
+                <h3>Teams</h3>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
