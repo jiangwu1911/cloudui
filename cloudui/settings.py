@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+from openstack_dashboard import exceptions
+
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 
@@ -25,6 +27,19 @@ SECRET_KEY = 's0z4t%y$8ukv&9xs$te1u94i57@mr3!ks4&i)vf^n%wi2jb6r%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+HORIZON_CONFIG = {
+    'ajax_queue_limit': 10,
+    'auto_fade_alerts': {
+        'delay': 3000,
+        'fade_duration': 1500,
+        'types': ['alert-success', 'alert-info']
+    },
+    'help_url': "http://docs.openstack.org",
+    'exceptions': {'recoverable': exceptions.RECOVERABLE,
+                   'not_found': exceptions.NOT_FOUND,
+                   'unauthorized': exceptions.UNAUTHORIZED},
+}
 
 TEMPLATE_DEBUG = True
 
@@ -41,6 +56,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
+    'horizon',    
+    'openstack_dashboard',
     
     # theme
     "bootstrapform",

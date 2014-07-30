@@ -2,6 +2,16 @@ Django>=1.6.5
 MySQL-python>=1.2.5
 pinax-theme-bootstrap==5.4.0
 pytz
+httplib2
+mox
 python-keystoneclient
 python-glanceclient
 python-novaclient
+python-cinderclient
+python-heatclient
+python-neutronclient
+python-saharaclient
+python-swiftclient
+python-troveclient
+python-ceilometerclient
+django_openstack_auth
